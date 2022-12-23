@@ -1,18 +1,16 @@
 
 sap.ui.define([
 	'sap/ui/core/mvc/Controller',
-	"com/ui/zmmassetmanage/model/formatter",
 	"sap/ui/core/UIComponent",
 	"sap/ui/table/TablePersoController",
 ],
-	
-	function (Controller, formatter, UIComponent,  TablePersoController) {
+
+	function (Controller, UIComponent, TablePersoController) {
 		"use strict";
 
 		var oMessagePopover;
 
 		return Controller.extend("variantDemo.variantmanagmentapp.controller.BaseController", {
-			formatter: formatter,
 
 			/**
 			 * Convenience method for accessing the router.
@@ -86,7 +84,7 @@ sap.ui.define([
 					// seting default variant
 					oPersonalizationVariantSet.getVariantKeys().forEach(function (sKey) {
 						var sVariant = oPersonalizationVariantSet.getVariant(sKey);
-
+						
 						if (sVariant.getItemValue("Default")) {
 							that.getView().byId(variantMgmtControl).setDefaultVariantKey(sKey);
 							that.getView().byId(variantMgmtControl).setInitialSelectionKey(sKey);
@@ -103,10 +101,8 @@ sap.ui.define([
 								});
 								if (aTableColumn.length > 0) {
 									aTableColumn[aColumn.index].setVisible(aColumn.Visible);
-
 								}
 							}.bind(that));
-
 						}
 					});
 

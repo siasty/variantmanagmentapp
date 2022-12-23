@@ -1,7 +1,62 @@
-<mvc:View controllerName="variantDemo.variantmanagmentapp.controller.View"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View controllerName="variantDemo.variantmanagmentapp.controller.View" xmlns="sap.ui.table" xmlns:variant="sap.ui.comp.variants" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns:m="sap.m">
+    <m:Page id="page" title="{i18n>title}">
+        <m:content>
+            <Table id="tableId" rows="{/Products}" selectionMode="None" visibleRowCount="15" ariaLabelledBy="title">
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title id="title" text="Products" />
+                        <variant:VariantManagement variantItems="{/Variants}" showSetAsDefault="true" select="onSelectVariant" save="onSaveAsVariant" enabled="true" manage="onManageVariant" showExecuteOnSelection="false" showShare="false" id="variantManagement">
+                            <variant:variantItems>
+                                <variant:VariantItem text="{VariantName}" key="{VariantKey}" />
+                            </variant:variantItems>
+                        </variant:VariantManagement>
+                        <m:ToolbarSpacer />
+                        <m:Button id="persoButton" icon="sap-icon://action-settings" press="onPersoButtonPressed">
+                            <m:layoutData>
+                                <m:OverflowToolbarLayoutData  priority="NeverOverflow" />
+                            </m:layoutData>
+                        </m:Button>
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column width="11rem" autoResizable="true">
+                        <m:Label text="Product Id" />
+                        <template>
+                            <m:Text text="{ID}" />
+                        </template>
+                    </Column>
+                    <Column width="11rem" autoResizable="true">
+                        <m:Label text="Product Name" />
+                        <template>
+                            <m:Text text="{Name}" />
+                        </template>
+                    </Column>
+                    <Column width="6rem"  autoResizable="true">
+                        <m:Label text="Description" />
+                        <template>
+                            <m:Label text="{Description}" />
+                        </template>
+                    </Column>
+                    <Column width="9rem" autoResizable="true">
+                        <m:Label text="Price" />
+                        <template>
+                            <m:Text text="{ path: 'Price', type: 'sap.ui.model.type.Float' }" />
+                        </template>
+                    </Column>
+                    <Column width="11rem" autoResizable="true">
+                        <m:Label text="Release Date" />
+                        <template>
+                            <m:Text text="{path: 'ReleaseDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }      }"  />
+                        </template>
+                    </Column>
+                    <Column width="11rem" autoResizable="true">
+                        <m:Label text="Discontinue dDate" />
+                        <template>
+                            <m:Text text="{path: 'DiscontinuedDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }      }"  />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+    </m:Page>
 </mvc:View>
